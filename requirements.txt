@@ -1,0 +1,83 @@
+streamlit
+pandas
+plotly
+requests
+beautifulsoup4
+---
+
+### 2. Subir el Código a GitHub
+
+GitHub es perfecto para gestionar versiones de tu código y compartirlo.
+
+1.  **Crea un repositorio en GitHub:**
+    -   Ve a [github.com](https://github.com/) e inicia sesión.
+    -   Haz clic en el botón **`+`** en la esquina superior derecha y selecciona **"New repository"**.
+    -   Ponle un nombre (por ejemplo, `calculadora-salarial`) y haz clic en **"Create repository"**.
+
+2.  **Sube tus archivos usando la terminal:**
+    -   Abre tu terminal y navega a la carpeta de tu proyecto.
+    -   Inicializa un repositorio de Git:
+        ```bash
+        git init
+        ```
+    -   Agrega los archivos al repositorio local:
+        ```bash
+        git add .
+        ```
+    -   Haz tu primer "commit" (una instantánea de tus archivos):
+        ```bash
+        git commit -m "First commit: Initial app and requirements"
+        ```
+    -   Conecta tu repositorio local con el de GitHub (reemplaza `<URL_DEL_REPOSITORIO>` con la URL que te dio GitHub):
+        ```bash
+        git remote add origin <URL_DEL_REPOSITORIO>
+        ```
+    -   Sube los archivos:
+        ```bash
+        git push -u origin main
+        ```
+
+¡Listo! Tu código ya está en GitHub y es público para que tus amigos lo vean.
+
+---
+
+### 3. Desplegar la Aplicación en el Servidor Debian
+
+Ahora que tienes tu código en GitHub, es hora de ponerlo a correr.
+
+1.  **Conéctate a tu servidor Debian:**
+    ```bash
+    ssh usuario@ip_de_tu_servidor
+    ```
+
+2.  **Instala las dependencias necesarias:**
+    -   Actualiza la lista de paquetes:
+        ```bash
+        sudo apt update
+        ```
+    -   Instala Python y `pip`:
+        ```bash
+        sudo apt install python3-pip git
+        ```
+
+3.  **Clona tu repositorio de GitHub:**
+    -   Crea un directorio para tu aplicación:
+        ```bash
+        mkdir mi_app_salarial
+        cd mi_app_salarial
+        ```
+    -   Clona tu repositorio. Esto descargará todos tus archivos (`app.py`, `requirements.txt`, etc.):
+        ```bash
+        git clone <URL_DEL_REPOSITORIO> .
+        ```
+
+4.  **Instala las dependencias de Streamlit:**
+    -   Ahora, usa el archivo `requirements.txt` para instalar todo lo que necesitas:
+        ```bash
+        pip3 install -r requirements.txt
+        ```
+
+5.  **Ejecuta la aplicación:**
+    -   Lanza la aplicación con Streamlit. Utiliza la opción `--server.enableCORS false` si tienes problemas de conexión:
+        ```bash
+        streamlit run app.py --server.port 8501 --server.enableCORS false
